@@ -1,12 +1,13 @@
 {
   "group": "gtk",
-  "about": "Text Editor's confirmation before it quits with a change unsaved: an alert dialog with the destructive response",
+  "about": "In the light scheme: A tooltip over Text Editor's headerbar: h with the ring, its text readable",
   "rules": [
-    "R2",
-    "C3",
-    "S2"
+    "S2",
+    "C2",
+    "C2",
+    "S5"
   ],
-  "scheme": "dark",
+  "scheme": "light",
   "screen": {
     "w": 2880,
     "h": 1800,
@@ -34,16 +35,16 @@
   "approved": {
     "build": "20261004.230225",
     "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
-    "share": 1,
-    "new": false
+    "share": null,
+    "new": true
   },
   "lf": {
-    "pass": 2,
+    "pass": 5,
     "fail": 0,
     "checks": []
   },
   "noise": {
-    "edges": 0.01298070987654321,
-    "palette_colors": 7
+    "edges": 0.011433449074074073,
+    "palette_colors": 6
   }
 }

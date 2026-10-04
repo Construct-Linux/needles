@@ -1,12 +1,11 @@
 {
   "group": "gtk",
-  "about": "Text Editor's confirmation before it quits with a change unsaved: an alert dialog with the destructive response",
+  "about": "In the light scheme: Text Editor maximized: no ring, no radius, no shadow",
   "rules": [
-    "R2",
-    "C3",
-    "S2"
+    "S3",
+    "C2"
   ],
-  "scheme": "dark",
+  "scheme": "light",
   "screen": {
     "w": 2880,
     "h": 1800,
@@ -17,16 +16,16 @@
   "ignore": [],
   "actors": [
     {
-      "x": 1828,
+      "x": 1810,
       "y": 16,
       "w": 260,
       "h": 64,
       "why": "the clock"
     },
     {
-      "x": 2080,
+      "x": 2062,
       "y": 16,
-      "w": 384,
+      "w": 402,
       "h": 64,
       "why": "the readings of Vitals"
     }
@@ -34,16 +33,16 @@
   "approved": {
     "build": "20261004.230225",
     "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
-    "share": 1,
-    "new": false
+    "share": null,
+    "new": true
   },
   "lf": {
-    "pass": 2,
+    "pass": 4,
     "fail": 0,
     "checks": []
   },
   "noise": {
-    "edges": 0.01298070987654321,
-    "palette_colors": 7
+    "edges": 0.011856481481481482,
+    "palette_colors": 6
   }
 }

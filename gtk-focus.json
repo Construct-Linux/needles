@@ -1,10 +1,9 @@
 {
   "group": "gtk",
-  "about": "Text Editor's confirmation before it quits with a change unsaved: an alert dialog with the destructive response",
+  "about": "Text Editor's preferences after Tab: GTK's focus outline, the accent, is what the key focus changed",
   "rules": [
-    "R2",
-    "C3",
-    "S2"
+    "F2",
+    "C8"
   ],
   "scheme": "dark",
   "screen": {
@@ -17,16 +16,16 @@
   "ignore": [],
   "actors": [
     {
-      "x": 1828,
+      "x": 1810,
       "y": 16,
       "w": 260,
       "h": 64,
       "why": "the clock"
     },
     {
-      "x": 2080,
+      "x": 2062,
       "y": 16,
-      "w": 384,
+      "w": 402,
       "h": 64,
       "why": "the readings of Vitals"
     }
@@ -34,16 +33,16 @@
   "approved": {
     "build": "20261004.230225",
     "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
-    "share": 1,
-    "new": false
+    "share": null,
+    "new": true
   },
   "lf": {
-    "pass": 2,
+    "pass": 3,
     "fail": 0,
     "checks": []
   },
   "noise": {
-    "edges": 0.01298070987654321,
-    "palette_colors": 7
+    "edges": 0.017051697530864197,
+    "palette_colors": 5
   }
 }

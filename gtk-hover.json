@@ -1,10 +1,9 @@
 {
   "group": "gtk",
-  "about": "Text Editor's confirmation before it quits with a change unsaved: an alert dialog with the destructive response",
+  "about": "Text Editor's maximize button under the pointer: GTK's hover, a step from rest in a colour the palette allows",
   "rules": [
-    "R2",
-    "C3",
-    "S2"
+    "S2",
+    "C1"
   ],
   "scheme": "dark",
   "screen": {
@@ -34,16 +33,16 @@
   "approved": {
     "build": "20261004.230225",
     "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
-    "share": 1,
-    "new": false
+    "share": null,
+    "new": true
   },
   "lf": {
-    "pass": 2,
+    "pass": 3,
     "fail": 0,
     "checks": []
   },
   "noise": {
-    "edges": 0.01298070987654321,
-    "palette_colors": 7
+    "edges": 0.00784201388888889,
+    "palette_colors": 4
   }
 }
