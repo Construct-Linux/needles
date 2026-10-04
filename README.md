@@ -20,8 +20,9 @@ whose run matched `main`.
 | File | What it is |
 |---|---|
 | `<view>.png` | the view at the harness's 2880x1800, a 15" laptop's panel at 200%: `desktop*`, `shell-*` (the shell's own views), `gtk-*` (libadwaita's widgets), `panel-*` (Settings' panels), an app by its id (`org.gnome.Nautilus`) |
-| `<view>.json` | the regions of the view left out of the comparison, each with why: `ignore`, written by hand, and `actors`, which the harness measured (the clock, Vitals' readings) |
-| `site/` | the gallery: `build.py` lays it out, `.github/workflows/pages.yml` publishes it |
+| `<view>.json` | written by the harness (os `cmd/image/needles.go`), every field required: `group` (the call that shot it: shell, desktop, app, gtk, settings, type, installer), `about` (what it validates) and `rules` (THEMING.md's ids), `scheme` and `screen` (physical size, scale, the stage's logical size), `approved` (the build and os commit it was approved from, the share that changed, or new), `lf` (its look-and-feel checks), `noise` (edge pixels, palette colours), and the regions left out of the comparison, each with why: `ignore`, written by hand, and `actors`, which the harness measured (the clock, Vitals' readings) |
+| `tolerance.json` | the comparison's tolerance: a pixel differs past `channel` of 255, a view fails past `share` of its compared area |
+| `site/` | the gallery: `build.py` lays it out - and refuses a view whose .json lacks a field - and `.github/workflows/pages.yml` publishes it |
 
 Every view leaves out the top bar's clock and Vitals' readings, which change from one run to the
 next (`cmd/image/needles.go` in os).

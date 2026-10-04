@@ -111,7 +111,7 @@
   .stage { overflow: auto; height: calc(100vh - 54px); padding: 16px; }
   .frame { position: relative; margin: 0 auto; width: fit-content; }
   .frame img { display: block; border: 1px solid var(--ring); border-radius: 4px; image-rendering: auto; }
-  .frame.fit img { max-width: calc(100vw - 34px); height: auto; }
+  .frame.fit img { height: auto; }
   .frame.one img { image-rendering: pixelated; }
   .region {
     position: absolute; border: 2px dashed var(--mask); border-radius: 3px; pointer-events: none;
@@ -129,6 +129,37 @@
     input[type="search"] { flex: 1; max-width: none; }
     .grid { grid-template-columns: 1fr; }
   }
+
+  .tolerance { color: var(--muted); font-size: 13px; }
+  section > p.about { color: var(--muted); margin: -4px 0 14px; max-width: 82ch; }
+  .card .meta { flex-direction: column; gap: 2px; }
+  .card .row { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+  .card .what { font-size: 12.5px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .badge { font-size: 11px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--ring); color: var(--muted); white-space: nowrap; }
+  .badge.new { border-color: var(--accent); color: var(--accent-text); }
+  .badge.fail { border-color: #ff7a90; color: #ff7a90; }
+  .vbody { display: grid; grid-template-columns: minmax(0, 1fr) 320px; height: calc(100vh - 54px); }
+  .vbody .stage { height: auto; }
+  aside {
+    border-left: 1px solid var(--ring); background: var(--surface); overflow: auto;
+    padding: 16px; font-size: 13.5px;
+  }
+  aside h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 18px 0 6px; }
+  aside h3:first-child { margin-top: 0; }
+  aside dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; margin: 0; }
+  aside dt { color: var(--muted); }
+  aside dd { margin: 0; overflow-wrap: anywhere; }
+  aside ul { margin: 0; padding-left: 18px; }
+  .chip { display: inline-block; font-size: 12px; padding: 1px 7px; margin: 0 4px 4px 0; border: 1px solid var(--ring); border-radius: 999px; }
+  /* Before and after: the previous needle under this one, the split where the slider is. */
+  .frame .before { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .frame .before img { width: 100%; height: auto; border-radius: 4px; }
+  .frame .split { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--accent); pointer-events: none; }
+  input[type="range"] { width: 160px; accent-color: var(--accent); }
+  @media (max-width: 900px) {
+    .vbody { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+    aside { border-left: 0; border-top: 1px solid var(--ring); max-height: 40vh; }
+  }
 </style>
 </head>
 <body>
@@ -136,6 +167,7 @@
   <div class="bar">
     <h1>CONSTRUCT <span>needles</span></h1>
     <span class="build" id="build"></span>
+    <span class="tolerance" id="tolerance"></span>
     <div class="tools">
       <input type="search" id="filter" placeholder="Filter views" aria-label="Filter views">
       <button id="theme" title="Light or dark page">Theme</button>
@@ -149,20 +181,23 @@
     <span class="title" id="v-name"></span>
     <span class="sub" id="v-sub"></span>
     <span class="spacer"></span>
+    <label class="sub" id="v-before-label" title="The needle this one replaced, under it (key b)">Before <input type="range" id="v-before" min="0" max="100" value="0"></label>
     <button id="v-scale" aria-pressed="false" title="1:1 shows each pixel of the screenshot as one of your screen's (key 1)">1:1</button>
     <button id="v-regions" aria-pressed="true" title="The regions the comparison leaves out (key r)">Regions</button>
-    <a id="v-history" target="_blank" rel="noopener">History</a>
     <button id="v-prev" aria-label="Previous view">←</button>
     <button id="v-next" aria-label="Next view">→</button>
     <button id="v-close" aria-label="Close">Close</button>
   </div>
-  <div class="stage" id="v-stage" tabindex="-1" autofocus><div class="frame fit" id="v-frame"><img id="v-img" alt=""></div></div>
+  <div class="vbody">
+    <div class="stage" id="v-stage" tabindex="-1" autofocus><div class="frame fit" id="v-frame"><img id="v-img" alt=""></div></div>
+    <aside id="v-info"></aside>
+  </div>
 </dialog>
 
 <script>
 (() => {
-  const ORDER = ["Shell", "Desktop", "Apps", "GTK widgets", "Settings"];
   const $ = id => document.getElementById(id);
+  const THEMING = "https://github.com/Construct-Linux/brand/blob/main/THEMING.md";
   let data, shown = [], at = 0, oneToOne = false, regions = true;
 
   // A per-viewer convenience: the page's theme, remembered in this browser only.
@@ -178,13 +213,23 @@
     applyTheme(next); store.set("theme", next);
   };
 
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const pct = x => `${(100 * x).toFixed(2)}%`;
+  // How the view was approved: new, or the share of it that changed.
+  const approval = v => v.approved.new ? ["new", `new in ${v.approved.build}`]
+    : ["", v.approved.share == null ? `approved in ${v.approved.build}` : `${pct(v.approved.share)} changed in ${v.approved.build}`];
+
   const card = v => {
-    const b = document.createElement("button");
-    b.className = "card";
-    b.innerHTML = `<img loading="lazy" alt="" src="${v.name}.png"><div class="meta"><span class="name"></span><span class="date"></span></div>`;
-    b.querySelector(".name").textContent = v.name;
-    b.querySelector(".date").textContent = v.commit.date;
-    b.querySelector("img").alt = v.name;
+    const b = el("button", "card");
+    const img = el("img"); img.loading = "lazy"; img.src = `${v.name}.png`; img.alt = v.name;
+    const meta = el("div", "meta"), row = el("div", "row");
+    row.append(el("span", "name", v.name));
+    const [cls, text] = approval(v);
+    row.append(el("span", "badge " + cls, cls ? "new" : v.scheme));
+    if (v.lf.fail > 0) row.append(el("span", "badge fail", `${v.lf.fail} lf failed`));
+    meta.append(row, el("span", "what", v.about));
+    b.title = text;
+    b.append(img, meta);
     b.onclick = () => open(shown.indexOf(v));
     return b;
   };
@@ -194,51 +239,108 @@
     const main = $("main");
     main.textContent = "";
     shown = [];
-    for (const g of ORDER) {
-      const vs = data.views.filter(v => v.group === g && v.name.toLowerCase().includes(q));
+    for (const g of data.groups) {
+      const vs = data.views.filter(v => v.group === g.key &&
+        (v.name.toLowerCase().includes(q) || v.about.toLowerCase().includes(q) || v.rules.some(r => r.toLowerCase() === q)));
       if (!vs.length) continue;
-      const s = document.createElement("section");
-      s.innerHTML = `<h2>${g} <small>${vs.length}</small></h2><div class="grid"></div>`;
-      vs.forEach(v => { shown.push(v); s.querySelector(".grid").append(card(v)); });
+      const s = el("section");
+      const h = el("h2", null, g.title + " "); h.append(el("small", null, String(vs.length)));
+      const grid = el("div", "grid");
+      s.append(h, el("p", "about", g.about), grid);
+      vs.forEach(v => { shown.push(v); grid.append(card(v)); });
       main.append(s);
     }
     if (!shown.length) main.innerHTML = `<p class="empty">No view matches.</p>`;
   };
 
+  const info = v => {
+    const a = $("v-info"); a.textContent = "";
+    const sec = (title) => { a.append(el("h3", null, title)); };
+    sec("What it validates");
+    a.append(el("p", null, v.about));
+    if (v.rules.length) {
+      const p = el("p");
+      v.rules.forEach(r => { const c = el("a", "chip", r); c.href = THEMING; c.target = "_blank"; c.rel = "noopener"; c.title = `THEMING.md, rule ${r}`; p.append(c); });
+      a.append(p);
+    }
+    sec("How it was shot");
+    const dl = el("dl");
+    const row = (k, val) => { dl.append(el("dt", null, k), el("dd", null, val)); };
+    const sc = v.screen;
+    row("scheme", v.scheme);
+    row("screen", `${sc.w}×${sc.h} px`);
+    row("stage", `${sc.stage_w}×${sc.stage_h} at ${sc.scale * 100}%`);
+    row("build", v.approved.build);
+    row("os", v.approved.os.slice(0, 10));
+    a.append(dl);
+    sec("How it is compared");
+    const t = data.tolerance;
+    a.append(el("p", null, `A pixel differs past ${t.channel} of 255 in a channel; the view fails past ${pct(t.share)} of its compared area.`));
+    sec("Approved");
+    const [, text] = approval(v);
+    const ap = el("p", null, text + " · ");
+    const hist = el("a", null, "history"); hist.href = `https://github.com/${data.repository}/commits/main/${v.name}.png`; hist.target = "_blank"; hist.rel = "noopener";
+    ap.append(hist);
+    a.append(ap);
+    sec("Look-and-feel checks");
+    a.append(el("p", null, `${v.lf.pass} passed, ${v.lf.fail} failed`));
+    if (v.lf.checks.length) { const ul = el("ul"); v.lf.checks.forEach(c => ul.append(el("li", null, c))); a.append(ul); }
+    sec("Noise");
+    a.append(el("p", null, `${pct(v.noise.edges)} of the pixels are edges; ${v.noise.palette_colors} of the palette's colours.`));
+    sec(`Left out of the comparison (${v.regions.length})`);
+    if (!v.regions.length) a.append(el("p", null, "Nothing: the whole view is compared."));
+    else { const ul = el("ul"); v.regions.forEach(r => ul.append(el("li", null, `${r.why || "left out"} - ${r.w}×${r.h} at ${r.x},${r.y}`))); a.append(ul); }
+  };
+
   const show = () => {
     const v = shown[at];
     $("v-name").textContent = v.name;
-    $("v-sub").textContent = `${v.w}×${v.h} · ${v.commit.date} · ${v.commit.subject}`;
-    $("v-history").href = `https://github.com/${data.repository}/commits/main/${v.name}.png`;
+    $("v-sub").textContent = `${v.scheme} · ${v.screen.stage_w}×${v.screen.stage_h} @${v.screen.scale}x`;
     const frame = $("v-frame"), img = $("v-img");
     frame.className = "frame " + (oneToOne ? "one" : "fit");
     img.src = `${v.name}.png`;
     img.alt = v.name;
-    // At its logical size a 2x view is half its pixels across: what a person sees on a 2x panel.
-    img.style.width = oneToOne ? `${v.w / devicePixelRatio}px` : `${Math.min(v.w / 2, innerWidth - 34)}px`;
-    frame.querySelectorAll(".region").forEach(r => r.remove());
+    // Fitted, a view is its stage's size - what a person sees on a screen at its scale; at 1:1,
+    // each of its pixels is one of this screen's.
+    if (oneToOne) {
+      frame.style.width = "";
+      img.style.width = `${v.screen.w / devicePixelRatio}px`;
+    } else {
+      frame.style.width = `min(${v.screen.stage_w}px, 100%)`;
+      img.style.width = "100%";
+    }
+    frame.querySelectorAll(".region, .before, .split").forEach(r => r.remove());
+    const before = $("v-before");
+    $("v-before-label").classList.toggle("hidden", !v.prev);
+    if (v.prev && +before.value > 0) {
+      const b = el("div", "before"), bi = el("img"); bi.src = `prev/${v.name}.png`; bi.alt = `${v.name} before`;
+      b.append(bi);
+      b.style.clipPath = `inset(0 ${100 - before.value}% 0 0)`;
+      const split = el("div", "split"); split.style.left = `${before.value}%`;
+      frame.append(b, split);
+    }
     if (regions) {
       for (const r of v.regions) {
-        const d = document.createElement("div");
-        d.className = "region";
-        Object.assign(d.style, { left: `${100 * r.x / v.w}%`, top: `${100 * r.y / v.h}%`, width: `${100 * r.w / v.w}%`, height: `${100 * r.h / v.h}%` });
-        d.innerHTML = "<span></span>";
-        d.firstChild.textContent = r.why || "left out";
+        const d = el("div", "region");
+        Object.assign(d.style, { left: `${100 * r.x / v.screen.w}%`, top: `${100 * r.y / v.screen.h}%`, width: `${100 * r.w / v.screen.w}%`, height: `${100 * r.h / v.screen.h}%` });
+        d.append(el("span", null, r.why || "left out"));
         frame.append(d);
       }
     }
+    info(v);
     $("v-scale").setAttribute("aria-pressed", oneToOne);
     $("v-regions").setAttribute("aria-pressed", regions);
     history.replaceState(null, "", `#${encodeURIComponent(v.name)}`);
   };
 
-  const open = i => { at = i; show(); if (!$("viewer").open) $("viewer").showModal(); };
-  const step = d => { at = (at + d + shown.length) % shown.length; show(); };
+  const open = i => { at = i; $("v-before").value = 0; show(); if (!$("viewer").open) $("viewer").showModal(); };
+  const step = d => { at = (at + d + shown.length) % shown.length; $("v-before").value = 0; show(); };
   $("v-prev").onclick = () => step(-1);
   $("v-next").onclick = () => step(1);
   $("v-close").onclick = () => $("viewer").close();
   $("v-scale").onclick = () => { oneToOne = !oneToOne; show(); };
   $("v-regions").onclick = () => { regions = !regions; show(); };
+  $("v-before").addEventListener("input", show);
   $("viewer").addEventListener("close", () => history.replaceState(null, "", location.pathname));
   addEventListener("keydown", e => {
     if (!$("viewer").open) return;
@@ -246,14 +348,17 @@
     else if (e.key === "ArrowLeft") step(-1);
     else if (e.key === "1") { oneToOne = !oneToOne; show(); }
     else if (e.key === "r") { regions = !regions; show(); }
+    else if (e.key === "b" && shown[at].prev) { const b = $("v-before"); b.value = +b.value > 0 ? 0 : 50; show(); }
   });
   $("filter").addEventListener("input", render);
 
   fetch("views.json").then(r => r.json()).then(d => {
     data = d;
     const c = d.commit;
-    $("build").innerHTML = `${d.views.length} views · <a href="https://github.com/${d.repository}/commit/${c.sha}"></a>`;
-    $("build").querySelector("a").textContent = `${c.subject} (${c.date})`;
+    $("build").textContent = `${d.views.length} views · `;
+    const link = el("a", null, `${c.subject} (${c.date})`); link.href = `https://github.com/${d.repository}/commit/${c.sha}`;
+    $("build").append(link);
+    $("tolerance").textContent = `fails past ${pct(d.tolerance.share)} changed, a pixel past ${d.tolerance.channel}/255`;
     render();
     const want = decodeURIComponent(location.hash.slice(1));
     const i = shown.findIndex(v => v.name === want);
