@@ -1,32 +1,63 @@
 {
+  "group": "installer",
+  "about": "The graphical installer as a stick's live session offers it: its body f, its headerbar g with one rule under it, the ring outside it",
+  "rules": [
+    "S3",
+    "E3",
+    "C3"
+  ],
+  "scheme": "dark",
+  "screen": {
+    "w": 2880,
+    "h": 1800,
+    "scale": 2,
+    "stage_w": 1440,
+    "stage_h": 900
+  },
+  "ignore": [],
   "actors": [
     {
-      "x": 1804,
+      "x": 1786,
       "y": 16,
       "w": 258,
       "h": 64,
       "why": "the clock"
     },
     {
-      "x": 2134,
+      "x": 1792,
       "y": 16,
-      "w": 410,
+      "w": 258,
+      "h": 64,
+      "why": "the clock"
+    },
+    {
+      "x": 2036,
+      "y": 16,
+      "w": 428,
       "h": 64,
       "why": "the readings of Vitals"
     },
     {
-      "x": 1804,
+      "x": 2042,
       "y": 16,
-      "w": 258,
-      "h": 64,
-      "why": "the clock"
-    },
-    {
-      "x": 2134,
-      "y": 16,
-      "w": 410,
+      "w": 422,
       "h": 64,
       "why": "the readings of Vitals"
     }
-  ]
+  ],
+  "approved": {
+    "build": "20261004.230225",
+    "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
+    "share": 1,
+    "new": false
+  },
+  "lf": {
+    "pass": 4,
+    "fail": 0,
+    "checks": []
+  },
+  "noise": {
+    "edges": 0.010100501543209876,
+    "palette_colors": 6
+  }
 }
