@@ -1,4 +1,19 @@
 {
+  "group": "app",
+  "about": "VS Code's workbench once its onboarding is dismissed: the title bar and the editor on g, the side and status bars on f, from the palette's construct-theme",
+  "rules": [
+    "X1",
+    "S3"
+  ],
+  "scheme": "dark",
+  "screen": {
+    "w": 2880,
+    "h": 1800,
+    "scale": 2,
+    "stage_w": 1440,
+    "stage_h": 900
+  },
+  "ignore": [],
   "actors": [
     {
       "x": 1792,
@@ -8,25 +23,26 @@
       "why": "the clock"
     },
     {
-      "x": 2122,
-      "y": 16,
-      "w": 422,
-      "h": 64,
-      "why": "the readings of Vitals"
-    },
-    {
-      "x": 1792,
-      "y": 16,
-      "w": 258,
-      "h": 64,
-      "why": "the clock"
-    },
-    {
-      "x": 2122,
+      "x": 2042,
       "y": 16,
       "w": 422,
       "h": 64,
       "why": "the readings of Vitals"
     }
-  ]
+  ],
+  "approved": {
+    "build": "20261004.230225",
+    "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
+    "share": 1,
+    "new": false
+  },
+  "lf": {
+    "pass": 3,
+    "fail": 0,
+    "checks": []
+  },
+  "noise": {
+    "edges": 0.02233082561728395,
+    "palette_colors": 7
+  }
 }

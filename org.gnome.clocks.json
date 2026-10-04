@@ -1,4 +1,20 @@
 {
+  "group": "app",
+  "about": "The first window org.gnome.clocks opens, a few seconds in: a dark window on f with its ring, the headerbar and views on g, at most one solid primary",
+  "rules": [
+    "S3",
+    "C3",
+    "T2"
+  ],
+  "scheme": "dark",
+  "screen": {
+    "w": 2880,
+    "h": 1800,
+    "scale": 2,
+    "stage_w": 1440,
+    "stage_h": 900
+  },
+  "ignore": [],
   "actors": [
     {
       "x": 1812,
@@ -8,25 +24,26 @@
       "why": "the clock"
     },
     {
-      "x": 2142,
-      "y": 16,
-      "w": 402,
-      "h": 64,
-      "why": "the readings of Vitals"
-    },
-    {
-      "x": 1812,
-      "y": 16,
-      "w": 258,
-      "h": 64,
-      "why": "the clock"
-    },
-    {
-      "x": 2142,
+      "x": 2062,
       "y": 16,
       "w": 402,
       "h": 64,
       "why": "the readings of Vitals"
     }
-  ]
+  ],
+  "approved": {
+    "build": "20261004.230225",
+    "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
+    "share": 1,
+    "new": false
+  },
+  "lf": {
+    "pass": 2,
+    "fail": 0,
+    "checks": []
+  },
+  "noise": {
+    "edges": 0.010143132716049382,
+    "palette_colors": 6
+  }
 }
