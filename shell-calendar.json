@@ -1,0 +1,60 @@
+{
+  "actors": [
+    {
+      "x": 1830,
+      "y": 16,
+      "w": 258,
+      "h": 64,
+      "why": "the clock"
+    },
+    {
+      "x": 2160,
+      "y": 16,
+      "w": 384,
+      "h": 64,
+      "why": "the readings of Vitals"
+    },
+    {
+      "x": 2112,
+      "y": 118,
+      "w": 568,
+      "h": 142,
+      "why": "the date of today"
+    },
+    {
+      "x": 2112,
+      "y": 264,
+      "w": 568,
+      "h": 612,
+      "why": "the days of the month"
+    },
+    {
+      "x": 1830,
+      "y": 16,
+      "w": 258,
+      "h": 64,
+      "why": "the clock"
+    },
+    {
+      "x": 2160,
+      "y": 16,
+      "w": 384,
+      "h": 64,
+      "why": "the readings of Vitals"
+    },
+    {
+      "x": 2112,
+      "y": 118,
+      "w": 568,
+      "h": 142,
+      "why": "the date of today"
+    },
+    {
+      "x": 2112,
+      "y": 264,
+      "w": 568,
+      "h": 612,
+      "why": "the days of the month"
+    }
+  ]
+}
