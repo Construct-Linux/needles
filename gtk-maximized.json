@@ -1,32 +1,47 @@
 {
+  "group": "gtk",
+  "about": "Text Editor maximized: no ring, no radius, no shadow",
+  "rules": [
+    "S3"
+  ],
+  "scheme": "dark",
+  "screen": {
+    "w": 2880,
+    "h": 1800,
+    "scale": 2,
+    "stage_w": 1440,
+    "stage_h": 900
+  },
+  "ignore": [],
   "actors": [
     {
-      "x": 1812,
+      "x": 1828,
       "y": 16,
-      "w": 258,
+      "w": 260,
       "h": 64,
       "why": "the clock"
     },
     {
-      "x": 2142,
+      "x": 2080,
       "y": 16,
-      "w": 402,
-      "h": 64,
-      "why": "the readings of Vitals"
-    },
-    {
-      "x": 1812,
-      "y": 16,
-      "w": 258,
-      "h": 64,
-      "why": "the clock"
-    },
-    {
-      "x": 2142,
-      "y": 16,
-      "w": 402,
+      "w": 384,
       "h": 64,
       "why": "the readings of Vitals"
     }
-  ]
+  ],
+  "approved": {
+    "build": "20261004.230225",
+    "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
+    "share": 1,
+    "new": false
+  },
+  "lf": {
+    "pass": 3,
+    "fail": 0,
+    "checks": []
+  },
+  "noise": {
+    "edges": 0.0068125,
+    "palette_colors": 4
+  }
 }

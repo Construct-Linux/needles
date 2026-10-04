@@ -1,32 +1,49 @@
 {
+  "group": "gtk",
+  "about": "A libadwaita dialog, Text Editor's preferences: h with the ring and a shadow by level, its groups and rows",
+  "rules": [
+    "S2",
+    "TY4",
+    "TY5"
+  ],
+  "scheme": "dark",
+  "screen": {
+    "w": 2880,
+    "h": 1800,
+    "scale": 2,
+    "stage_w": 1440,
+    "stage_h": 900
+  },
+  "ignore": [],
   "actors": [
     {
-      "x": 1830,
+      "x": 1810,
       "y": 16,
-      "w": 258,
+      "w": 260,
       "h": 64,
       "why": "the clock"
     },
     {
-      "x": 2160,
+      "x": 2062,
       "y": 16,
-      "w": 384,
-      "h": 64,
-      "why": "the readings of Vitals"
-    },
-    {
-      "x": 1830,
-      "y": 16,
-      "w": 258,
-      "h": 64,
-      "why": "the clock"
-    },
-    {
-      "x": 2160,
-      "y": 16,
-      "w": 384,
+      "w": 402,
       "h": 64,
       "why": "the readings of Vitals"
     }
-  ]
+  ],
+  "approved": {
+    "build": "20261004.230225",
+    "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
+    "share": 1,
+    "new": false
+  },
+  "lf": {
+    "pass": 2,
+    "fail": 0,
+    "checks": []
+  },
+  "noise": {
+    "edges": 0.01722145061728395,
+    "palette_colors": 6
+  }
 }
