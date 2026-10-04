@@ -5,7 +5,7 @@ How CONSTRUCT must look, view by view: the screenshots its test harness
 them and approved them. openQA, which openSUSE, Fedora and GNOME test their images with, calls
 them needles.
 
-**See them:** https://construct-linux.github.io/needles/ - every view, by surface, at the size a
+**See them:** https://needles.constructlinux.org/ - every view, by surface, at the size a
 2x screen shows it or at 1:1 to judge its sharpness, with the regions the comparison leaves out
 (site/, published on every push to main).
 
