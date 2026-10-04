@@ -1,116 +1,76 @@
 {
+  "group": "shell",
+  "about": "The message list dense with notifications: each on h with its ring, its title, body and time readable",
+  "rules": [
+    "S2",
+    "C2"
+  ],
+  "scheme": "dark",
+  "screen": {
+    "w": 2880,
+    "h": 1800,
+    "scale": 2,
+    "stage_w": 1440,
+    "stage_h": 900
+  },
+  "ignore": [],
   "actors": [
     {
-      "x": 1830,
-      "y": 16,
-      "w": 258,
-      "h": 64,
-      "why": "the clock"
-    },
-    {
-      "x": 2160,
-      "y": 16,
-      "w": 384,
-      "h": 64,
-      "why": "the readings of Vitals"
-    },
-    {
-      "x": 2094,
-      "y": 118,
-      "w": 568,
-      "h": 142,
-      "why": "the date of today"
-    },
-    {
-      "x": 2094,
-      "y": 264,
-      "w": 568,
-      "h": 612,
-      "why": "the days of the month"
-    },
-    {
-      "x": 1414,
+      "x": 1412,
       "y": 154,
       "w": 110,
       "h": 40,
       "why": "the time of a notification"
     },
     {
-      "x": 1426,
+      "x": 1424,
       "y": 174,
       "w": 110,
       "h": 40,
       "why": "the time of a notification"
     },
     {
-      "x": 1438,
+      "x": 1436,
       "y": 188,
       "w": 110,
       "h": 40,
       "why": "the time of a notification"
     },
     {
-      "x": 1450,
+      "x": 1448,
       "y": 188,
       "w": 110,
       "h": 40,
       "why": "the time of a notification"
     },
     {
-      "x": 1830,
+      "x": 1828,
       "y": 16,
-      "w": 258,
+      "w": 260,
       "h": 64,
       "why": "the clock"
     },
     {
-      "x": 2160,
+      "x": 2080,
       "y": 16,
       "w": 384,
       "h": 64,
       "why": "the readings of Vitals"
-    },
-    {
-      "x": 2094,
-      "y": 118,
-      "w": 568,
-      "h": 142,
-      "why": "the date of today"
-    },
-    {
-      "x": 2094,
-      "y": 264,
-      "w": 568,
-      "h": 612,
-      "why": "the days of the month"
-    },
-    {
-      "x": 1414,
-      "y": 154,
-      "w": 110,
-      "h": 40,
-      "why": "the time of a notification"
-    },
-    {
-      "x": 1426,
-      "y": 174,
-      "w": 110,
-      "h": 40,
-      "why": "the time of a notification"
-    },
-    {
-      "x": 1438,
-      "y": 188,
-      "w": 110,
-      "h": 40,
-      "why": "the time of a notification"
-    },
-    {
-      "x": 1450,
-      "y": 188,
-      "w": 110,
-      "h": 40,
-      "why": "the time of a notification"
     }
-  ]
+  ],
+  "approved": {
+    "build": "20261004.230225",
+    "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
+    "share": 1,
+    "new": false
+  },
+  "lf": {
+    "pass": 2,
+    "fail": 0,
+    "checks": []
+  },
+  "noise": {
+    "edges": 0.015276427469135802,
+    "palette_colors": 5
+  }
 }

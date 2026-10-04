@@ -1,0 +1,33 @@
+{
+  "group": "shell",
+  "about": "The unlock prompt after a wrong password: it says so, readable on its surface",
+  "rules": [
+    "S2",
+    "C2"
+  ],
+  "scheme": "dark",
+  "screen": {
+    "w": 2880,
+    "h": 1800,
+    "scale": 2,
+    "stage_w": 1440,
+    "stage_h": 900
+  },
+  "ignore": [],
+  "actors": [],
+  "approved": {
+    "build": "20261004.230225",
+    "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
+    "share": null,
+    "new": true
+  },
+  "lf": {
+    "pass": 2,
+    "fail": 0,
+    "checks": []
+  },
+  "noise": {
+    "edges": 0.003322723765432099,
+    "palette_colors": 3
+  }
+}

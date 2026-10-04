@@ -1,13 +1,11 @@
 {
   "group": "shell",
-  "about": "Quick settings: the menu on h with its ring and concentric radius, toggles on as the rest tint with the accent's 24 px disc and accent_text, off in text",
+  "about": "The overview in the light scheme: the shell's ground still the boot's black, the workspace card the light wallpaper drawn small",
   "rules": [
-    "S2",
-    "C3",
-    "C4",
-    "R1"
+    "S4",
+    "W3"
   ],
-  "scheme": "dark",
+  "scheme": "light",
   "screen": {
     "w": 2880,
     "h": 1800,
@@ -18,16 +16,16 @@
   "ignore": [],
   "actors": [
     {
-      "x": 1810,
+      "x": 1828,
       "y": 16,
       "w": 260,
       "h": 64,
       "why": "the clock"
     },
     {
-      "x": 2062,
+      "x": 2080,
       "y": 16,
-      "w": 402,
+      "w": 384,
       "h": 64,
       "why": "the readings of Vitals"
     }
@@ -35,16 +33,16 @@
   "approved": {
     "build": "20261004.230225",
     "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
-    "share": 1,
-    "new": false
+    "share": null,
+    "new": true
   },
   "lf": {
-    "pass": 10,
+    "pass": 5,
     "fail": 0,
     "checks": []
   },
   "noise": {
-    "edges": 0.012046103395061729,
-    "palette_colors": 5
+    "edges": 0.006778935185185186,
+    "palette_colors": 6
   }
 }
