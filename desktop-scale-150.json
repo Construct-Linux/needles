@@ -1,23 +1,24 @@
 {
+  "group": "desktop",
+  "about": "The desktop at 150%, a fractional scale: the bars, their ring and their text drawn on physical pixels a stage pixel does not divide",
+  "rules": [
+    "S1",
+    "SP2"
+  ],
+  "scheme": "dark",
+  "screen": {
+    "w": 2880,
+    "h": 1800,
+    "scale": 1.5,
+    "stage_w": 1920,
+    "stage_h": 1200
+  },
+  "ignore": [],
   "actors": [
     {
-      "x": 2092,
+      "x": 2091,
       "y": 12,
-      "w": 194,
-      "h": 48,
-      "why": "the clock"
-    },
-    {
-      "x": 2280,
-      "y": 12,
-      "w": 288,
-      "h": 48,
-      "why": "the readings of Vitals"
-    },
-    {
-      "x": 2092,
-      "y": 12,
-      "w": 194,
+      "w": 195,
       "h": 48,
       "why": "the clock"
     },
@@ -28,5 +29,20 @@
       "h": 48,
       "why": "the readings of Vitals"
     }
-  ]
+  ],
+  "approved": {
+    "build": "20261004.230225",
+    "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
+    "share": 1,
+    "new": false
+  },
+  "lf": {
+    "pass": 2,
+    "fail": 0,
+    "checks": []
+  },
+  "noise": {
+    "edges": 0.0067417052469135805,
+    "palette_colors": 3
+  }
 }
