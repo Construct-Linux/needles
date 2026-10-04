@@ -1,0 +1,116 @@
+{
+  "actors": [
+    {
+      "x": 1830,
+      "y": 16,
+      "w": 258,
+      "h": 64,
+      "why": "the clock"
+    },
+    {
+      "x": 2160,
+      "y": 16,
+      "w": 384,
+      "h": 64,
+      "why": "the readings of Vitals"
+    },
+    {
+      "x": 2094,
+      "y": 118,
+      "w": 568,
+      "h": 142,
+      "why": "the date of today"
+    },
+    {
+      "x": 2094,
+      "y": 264,
+      "w": 568,
+      "h": 612,
+      "why": "the days of the month"
+    },
+    {
+      "x": 1414,
+      "y": 154,
+      "w": 110,
+      "h": 40,
+      "why": "the time of a notification"
+    },
+    {
+      "x": 1426,
+      "y": 174,
+      "w": 110,
+      "h": 40,
+      "why": "the time of a notification"
+    },
+    {
+      "x": 1438,
+      "y": 188,
+      "w": 110,
+      "h": 40,
+      "why": "the time of a notification"
+    },
+    {
+      "x": 1450,
+      "y": 188,
+      "w": 110,
+      "h": 40,
+      "why": "the time of a notification"
+    },
+    {
+      "x": 1830,
+      "y": 16,
+      "w": 258,
+      "h": 64,
+      "why": "the clock"
+    },
+    {
+      "x": 2160,
+      "y": 16,
+      "w": 384,
+      "h": 64,
+      "why": "the readings of Vitals"
+    },
+    {
+      "x": 2094,
+      "y": 118,
+      "w": 568,
+      "h": 142,
+      "why": "the date of today"
+    },
+    {
+      "x": 2094,
+      "y": 264,
+      "w": 568,
+      "h": 612,
+      "why": "the days of the month"
+    },
+    {
+      "x": 1414,
+      "y": 154,
+      "w": 110,
+      "h": 40,
+      "why": "the time of a notification"
+    },
+    {
+      "x": 1426,
+      "y": 174,
+      "w": 110,
+      "h": 40,
+      "why": "the time of a notification"
+    },
+    {
+      "x": 1438,
+      "y": 188,
+      "w": 110,
+      "h": 40,
+      "why": "the time of a notification"
+    },
+    {
+      "x": 1450,
+      "y": 188,
+      "w": 110,
+      "h": 40,
+      "why": "the time of a notification"
+    }
+  ]
+}
