@@ -1,9 +1,9 @@
 {
   "group": "shell",
-  "about": "The lock screen on the boot's black, its clock regular, nothing of an extension in the panel",
+  "about": "The unlock prompt the shell's AuthPrompt draws: the entry, and the dialog's default its one primary action",
   "rules": [
-    "S4",
-    "T2"
+    "S2",
+    "C3"
   ],
   "scheme": "dark",
   "screen": {
@@ -14,15 +14,7 @@
     "stage_h": 900
   },
   "ignore": [],
-  "actors": [
-    {
-      "x": 998,
-      "y": 346,
-      "w": 882,
-      "h": 678,
-      "why": "the lock clock"
-    }
-  ],
+  "actors": [],
   "approved": {
     "build": "20261004.230225",
     "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
@@ -30,12 +22,12 @@
     "new": false
   },
   "lf": {
-    "pass": 5,
+    "pass": 2,
     "fail": 0,
     "checks": []
   },
   "noise": {
-    "edges": 0.0022727623456790125,
-    "palette_colors": 1
+    "edges": 0.0017889660493827161,
+    "palette_colors": 3
   }
 }
