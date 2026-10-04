@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CONSTRUCT needles</title>
+<meta name="description" content="How CONSTRUCT must look, view by view: the screenshots its test harness compares every build with.">
+<style>
+  /* The brand's palette (Construct-Linux/brand palette.toml): ground, surfaces, the ring that
+     edges a raised surface, text, and the accent - for focus and the one thing that is active. */
+  :root {
+    --ground: #0b1116;
+    --surface: #11181e;
+    --raised: #172028;
+    --ring: #2a3843;
+    --text: #e6edf2;
+    --muted: #93a4b0;
+    --accent: #00e5ff;
+    --accent-text: #00e5ff;
+    --mask: rgba(255, 200, 87, 0.9);
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #dee4e8;
+      --surface: #f4f6f8;
+      --raised: #ffffff;
+      --ring: #c4ccd1;
+      --text: #11181e;
+      --muted: #536672;
+      --accent: #00a2b4;
+      --accent-text: #00646d;
+      --mask: rgba(178, 102, 0, 0.9);
+      color-scheme: light;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #dee4e8; --surface: #f4f6f8; --raised: #ffffff; --ring: #c4ccd1;
+    --text: #11181e; --muted: #536672; --accent: #00a2b4; --accent-text: #00646d;
+    --mask: rgba(178, 102, 0, 0.9); color-scheme: light;
+  }
+  :root[data-theme="dark"] { color-scheme: dark; }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--ground); color: var(--text); }
+  body {
+    font: 15px/1.45 "Adwaita Sans", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent-text); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+  header {
+    position: sticky; top: 0; z-index: 2;
+    background: color-mix(in srgb, var(--ground) 88%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--ring);
+  }
+  .bar {
+    max-width: 1440px; margin: 0 auto; padding: 14px 24px;
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  }
+  h1 { font-size: 17px; font-weight: 700; letter-spacing: 0.08em; margin: 0; }
+  h1 span { font-weight: 400; letter-spacing: 0; color: var(--muted); }
+  .build { color: var(--muted); font-size: 13px; }
+  .tools { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+  input[type="search"] {
+    background: var(--surface); color: var(--text); border: 1px solid var(--ring);
+    border-radius: 999px; padding: 7px 14px; font: inherit; width: 220px; max-width: 46vw;
+  }
+  button {
+    font: inherit; color: var(--text); background: var(--surface);
+    border: 1px solid var(--ring); border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  }
+  button:hover { background: var(--raised); }
+  button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent-text); }
+
+  main { max-width: 1440px; margin: 0 auto; padding: 8px 24px 64px; }
+  section h2 {
+    font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); margin: 28px 0 12px;
+  }
+  section h2 small { font-weight: 400; letter-spacing: 0; text-transform: none; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  .card {
+    display: block; padding: 0; text-align: left; border-radius: 12px; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--ring);
+  }
+  .card:hover { background: var(--surface); border-color: var(--muted); }
+  .card img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: var(--ground); }
+  .card .meta { padding: 9px 12px 11px; display: flex; justify-content: space-between; gap: 8px; }
+  .card .name { font-size: 14px; overflow-wrap: anywhere; }
+  .card .date { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .empty { color: var(--muted); padding: 48px 0; text-align: center; }
+
+  /* The viewer: the view at its logical size (half its pixels, as a 2x screen shows it), or at
+     1:1, where each of its pixels is one of the screen's - what sharpness is judged at. */
+  dialog {
+    width: 100vw; height: 100vh; max-width: none; max-height: none; margin: 0; padding: 0;
+    border: 0; background: var(--ground); color: var(--text);
+  }
+  dialog::backdrop { background: var(--ground); }
+  .vbar {
+    position: sticky; top: 0; z-index: 2; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+    padding: 10px 16px; background: var(--surface); border-bottom: 1px solid var(--ring);
+  }
+  .vbar .title { font-weight: 700; }
+  .vbar .sub { color: var(--muted); font-size: 13px; }
+  .vbar .spacer { flex: 1; }
+  .stage { overflow: auto; height: calc(100vh - 54px); padding: 16px; }
+  .frame { position: relative; margin: 0 auto; width: fit-content; }
+  .frame img { display: block; border: 1px solid var(--ring); border-radius: 4px; image-rendering: auto; }
+  .frame.fit img { max-width: calc(100vw - 34px); height: auto; }
+  .frame.one img { image-rendering: pixelated; }
+  .region {
+    position: absolute; border: 2px dashed var(--mask); border-radius: 3px; pointer-events: none;
+  }
+  .region span {
+    position: absolute; left: 0; top: 100%; margin-top: 2px; white-space: nowrap;
+    font-size: 11px; color: var(--ground); background: var(--mask); padding: 0 5px; border-radius: 3px;
+  }
+  .hidden { display: none !important; }
+
+  @media (max-width: 600px) {
+    .bar { padding: 12px 16px; }
+    main { padding: 8px 16px 48px; }
+    .tools { margin-left: 0; width: 100%; }
+    input[type="search"] { flex: 1; max-width: none; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>CONSTRUCT <span>needles</span></h1>
+    <span class="build" id="build"></span>
+    <div class="tools">
+      <input type="search" id="filter" placeholder="Filter views" aria-label="Filter views">
+      <button id="theme" title="Light or dark page">Theme</button>
+    </div>
+  </div>
+</header>
+<main id="main"><p class="empty">Loading the views…</p></main>
+
+<dialog id="viewer" aria-label="View">
+  <div class="vbar">
+    <span class="title" id="v-name"></span>
+    <span class="sub" id="v-sub"></span>
+    <span class="spacer"></span>
+    <button id="v-scale" aria-pressed="false" title="1:1 shows each pixel of the screenshot as one of your screen's (key 1)">1:1</button>
+    <button id="v-regions" aria-pressed="true" title="The regions the comparison leaves out (key r)">Regions</button>
+    <a id="v-history" target="_blank" rel="noopener">History</a>
+    <button id="v-prev" aria-label="Previous view">←</button>
+    <button id="v-next" aria-label="Next view">→</button>
+    <button id="v-close" aria-label="Close">Close</button>
+  </div>
+  <div class="stage" id="v-stage" tabindex="-1" autofocus><div class="frame fit" id="v-frame"><img id="v-img" alt=""></div></div>
+</dialog>
+
+<script>
+(() => {
+  const ORDER = ["Shell", "Desktop", "Apps", "GTK widgets", "Settings"];
+  const $ = id => document.getElementById(id);
+  let data, shown = [], at = 0, oneToOne = false, regions = true;
+
+  // A per-viewer convenience: the page's theme, remembered in this browser only.
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch {} },
+  };
+  const applyTheme = t => { if (t) document.documentElement.dataset.theme = t; };
+  applyTheme(store.get("theme"));
+  $("theme").onclick = () => {
+    const dark = getComputedStyle(document.documentElement).colorScheme.includes("dark");
+    const next = dark ? "light" : "dark";
+    applyTheme(next); store.set("theme", next);
+  };
+
+  const card = v => {
+    const b = document.createElement("button");
+    b.className = "card";
+    b.innerHTML = `<img loading="lazy" alt="" src="${v.name}.png"><div class="meta"><span class="name"></span><span class="date"></span></div>`;
+    b.querySelector(".name").textContent = v.name;
+    b.querySelector(".date").textContent = v.commit.date;
+    b.querySelector("img").alt = v.name;
+    b.onclick = () => open(shown.indexOf(v));
+    return b;
+  };
+
+  const render = () => {
+    const q = $("filter").value.trim().toLowerCase();
+    const main = $("main");
+    main.textContent = "";
+    shown = [];
+    for (const g of ORDER) {
+      const vs = data.views.filter(v => v.group === g && v.name.toLowerCase().includes(q));
+      if (!vs.length) continue;
+      const s = document.createElement("section");
+      s.innerHTML = `<h2>${g} <small>${vs.length}</small></h2><div class="grid"></div>`;
+      vs.forEach(v => { shown.push(v); s.querySelector(".grid").append(card(v)); });
+      main.append(s);
+    }
+    if (!shown.length) main.innerHTML = `<p class="empty">No view matches.</p>`;
+  };
+
+  const show = () => {
+    const v = shown[at];
+    $("v-name").textContent = v.name;
+    $("v-sub").textContent = `${v.w}×${v.h} · ${v.commit.date} · ${v.commit.subject}`;
+    $("v-history").href = `https://github.com/${data.repository}/commits/main/${v.name}.png`;
+    const frame = $("v-frame"), img = $("v-img");
+    frame.className = "frame " + (oneToOne ? "one" : "fit");
+    img.src = `${v.name}.png`;
+    img.alt = v.name;
+    // At its logical size a 2x view is half its pixels across: what a person sees on a 2x panel.
+    img.style.width = oneToOne ? `${v.w / devicePixelRatio}px` : `${Math.min(v.w / 2, innerWidth - 34)}px`;
+    frame.querySelectorAll(".region").forEach(r => r.remove());
+    if (regions) {
+      for (const r of v.regions) {
+        const d = document.createElement("div");
+        d.className = "region";
+        Object.assign(d.style, { left: `${100 * r.x / v.w}%`, top: `${100 * r.y / v.h}%`, width: `${100 * r.w / v.w}%`, height: `${100 * r.h / v.h}%` });
+        d.innerHTML = "<span></span>";
+        d.firstChild.textContent = r.why || "left out";
+        frame.append(d);
+      }
+    }
+    $("v-scale").setAttribute("aria-pressed", oneToOne);
+    $("v-regions").setAttribute("aria-pressed", regions);
+    history.replaceState(null, "", `#${encodeURIComponent(v.name)}`);
+  };
+
+  const open = i => { at = i; show(); if (!$("viewer").open) $("viewer").showModal(); };
+  const step = d => { at = (at + d + shown.length) % shown.length; show(); };
+  $("v-prev").onclick = () => step(-1);
+  $("v-next").onclick = () => step(1);
+  $("v-close").onclick = () => $("viewer").close();
+  $("v-scale").onclick = () => { oneToOne = !oneToOne; show(); };
+  $("v-regions").onclick = () => { regions = !regions; show(); };
+  $("viewer").addEventListener("close", () => history.replaceState(null, "", location.pathname));
+  addEventListener("keydown", e => {
+    if (!$("viewer").open) return;
+    if (e.key === "ArrowRight") step(1);
+    else if (e.key === "ArrowLeft") step(-1);
+    else if (e.key === "1") { oneToOne = !oneToOne; show(); }
+    else if (e.key === "r") { regions = !regions; show(); }
+  });
+  $("filter").addEventListener("input", render);
+
+  fetch("views.json").then(r => r.json()).then(d => {
+    data = d;
+    const c = d.commit;
+    $("build").innerHTML = `${d.views.length} views · <a href="https://github.com/${d.repository}/commit/${c.sha}"></a>`;
+    $("build").querySelector("a").textContent = `${c.subject} (${c.date})`;
+    render();
+    const want = decodeURIComponent(location.hash.slice(1));
+    const i = shown.findIndex(v => v.name === want);
+    if (i >= 0) open(i);
+  }).catch(err => { $("main").innerHTML = `<p class="empty">The views could not be read: ${err}</p>`; });
+})();
+</script>
+</body>
+</html>

@@ -5,6 +5,10 @@ How CONSTRUCT must look, view by view: the screenshots its test harness
 them and approved them. openQA, which openSUSE, Fedora and GNOME test their images with, calls
 them needles.
 
+**See them:** https://construct-linux.github.io/needles/ - every view, by surface, at the size a
+2x screen shows it or at 1:1 to judge its sharpness, with the regions the comparison leaves out
+(site/, published on every push to main).
+
 Every run compares its screenshots with these. A view that changed beyond the tolerance fails
 the run, and its difference is drawn. When the change is the one meant, `task needles:propose`
 opens a pull request here with the views that changed. GitHub shows each image's difference -
@@ -15,8 +19,9 @@ whose run matched `main`.
 
 | File | What it is |
 |---|---|
-| `<view>.png` | the view at the harness's 1280x800: `desktop`, `shell-*` (the shell's own views), `panel-*` (Settings' panels), an app by its id (`org.gnome.Nautilus`) |
-| `<view>.json` | optional, written by hand: the regions of the view left out of the comparison, each with why - `{"ignore": [{"x": 0, "y": 0, "w": 10, "h": 10, "why": "a clock face"}]}` |
+| `<view>.png` | the view at the harness's 2880x1800, a 15" laptop's panel at 200%: `desktop*`, `shell-*` (the shell's own views), `gtk-*` (libadwaita's widgets), `panel-*` (Settings' panels), an app by its id (`org.gnome.Nautilus`) |
+| `<view>.json` | the regions of the view left out of the comparison, each with why: `ignore`, written by hand, and `actors`, which the harness measured (the clock, Vitals' readings) |
+| `site/` | the gallery: `build.py` lays it out, `.github/workflows/pages.yml` publishes it |
 
 Every view leaves out the top bar's clock and Vitals' readings, which change from one run to the
 next (`cmd/image/needles.go` in os).
