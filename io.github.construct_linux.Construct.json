@@ -1,14 +1,12 @@
 {
-  "group": "shell",
-  "about": "Settings in the light scheme, the shell still dark: the window on the desk with its ring line, the sidebar the shelf, the selected row the sheet, one headerbar rule across both panes, no bright accent",
+  "group": "app",
+  "about": "The first window io.github.construct_linux.Construct opens, a few seconds in: a dark window on f with its ring, the headerbar and views on g, at most one solid primary",
   "rules": [
-    "S5",
-    "S6",
-    "C11",
-    "E3",
-    "C2"
+    "S3",
+    "C3",
+    "T2"
   ],
-  "scheme": "light",
+  "scheme": "dark",
   "screen": {
     "w": 2880,
     "h": 1800,
@@ -36,16 +34,16 @@
   "approved": {
     "build": "20261005.053331",
     "os": "157e40cce3ecb8a20baf738d37722e6c7eadbbb9",
-    "share": 0.02199477012854367,
-    "new": false
+    "share": null,
+    "new": true
   },
   "lf": {
-    "pass": 15,
+    "pass": 2,
     "fail": 0,
     "checks": []
   },
   "noise": {
-    "edges": 0.018189814814814815,
-    "palette_colors": 7
+    "edges": 0.017977237654320986,
+    "palette_colors": 6
   }
 }
