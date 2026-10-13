@@ -1,0 +1,48 @@
+{
+  "group": "shell",
+  "about": "A folder of the app grid open: its dialog on g with the ring and its radius, its name at the top, the apps it holds in a grid under it",
+  "rules": [
+    "S3",
+    "E3"
+  ],
+  "scheme": "dark",
+  "screen": {
+    "w": 2880,
+    "h": 1800,
+    "scale": 2,
+    "stage_w": 1440,
+    "stage_h": 900
+  },
+  "ignore": [],
+  "actors": [
+    {
+      "x": 1828,
+      "y": 16,
+      "w": 260,
+      "h": 64,
+      "why": "the clock"
+    },
+    {
+      "x": 2080,
+      "y": 16,
+      "w": 384,
+      "h": 64,
+      "why": "the readings of Vitals"
+    }
+  ],
+  "approved": {
+    "build": "20261013.173002",
+    "os": "ae7d3e7e1790a62760a67f51aed669a35f6eaa34",
+    "share": null,
+    "new": true
+  },
+  "lf": {
+    "pass": 2,
+    "fail": 0,
+    "checks": []
+  },
+  "noise": {
+    "edges": 0.009836612654320988,
+    "palette_colors": 5
+  }
+}

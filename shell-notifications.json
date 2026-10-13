@@ -16,31 +16,10 @@
   "ignore": [],
   "actors": [
     {
-      "x": 1412,
+      "x": 1430,
       "y": 154,
-      "w": 110,
-      "h": 40,
-      "why": "the time of a notification"
-    },
-    {
-      "x": 1424,
-      "y": 174,
-      "w": 110,
-      "h": 40,
-      "why": "the time of a notification"
-    },
-    {
-      "x": 1436,
-      "y": 188,
-      "w": 110,
-      "h": 40,
-      "why": "the time of a notification"
-    },
-    {
-      "x": 1448,
-      "y": 188,
-      "w": 110,
-      "h": 40,
+      "w": 146,
+      "h": 74,
       "why": "the time of a notification"
     },
     {
@@ -59,9 +38,9 @@
     }
   ],
   "approved": {
-    "build": "20261004.230225",
-    "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
-    "share": 1,
+    "build": "20261013.173002",
+    "os": "ae7d3e7e1790a62760a67f51aed669a35f6eaa34",
+    "share": 0.01798017480530636,
     "new": false
   },
   "lf": {
@@ -70,7 +49,7 @@
     "checks": []
   },
   "noise": {
-    "edges": 0.015276427469135802,
+    "edges": 0.015391203703703704,
     "palette_colors": 5
   }
 }
