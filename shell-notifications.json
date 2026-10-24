@@ -16,31 +16,31 @@
   "ignore": [],
   "actors": [
     {
-      "x": 1430,
+      "x": 1500,
       "y": 154,
       "w": 146,
       "h": 74,
       "why": "the time of a notification"
     },
     {
-      "x": 1828,
+      "x": 1898,
       "y": 16,
       "w": 260,
       "h": 64,
       "why": "the clock"
     },
     {
-      "x": 2080,
+      "x": 2150,
       "y": 16,
-      "w": 384,
+      "w": 314,
       "h": 64,
       "why": "the readings of Vitals"
     }
   ],
   "approved": {
-    "build": "20261013.173002",
-    "os": "ae7d3e7e1790a62760a67f51aed669a35f6eaa34",
-    "share": 0.01798017480530636,
+    "build": "20261024.224853",
+    "os": "09005e588348a291f1eddbb042e8477a958032af",
+    "share": 0.03901303451009028,
     "new": false
   },
   "lf": {
@@ -49,7 +49,7 @@
     "checks": []
   },
   "noise": {
-    "edges": 0.015391203703703704,
+    "edges": 0.015831211419753088,
     "palette_colors": 5
   }
 }
