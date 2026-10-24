@@ -14,7 +14,15 @@
     "stage_w": 1440,
     "stage_h": 900
   },
-  "ignore": [],
+  "ignore": [
+    {
+      "x": 0,
+      "y": 192,
+      "w": 2880,
+      "h": 1496,
+      "why": "the map: OpenStreetMap's tiles of the day, and which labels each draws by the order the tiles arrived in"
+    }
+  ],
   "actors": [
     {
       "x": 1774,
