@@ -14,7 +14,36 @@
     "stage_w": 1440,
     "stage_h": 900
   },
-  "ignore": [],
+  "ignore": [
+    {
+      "x": 720,
+      "y": 330,
+      "w": 1500,
+      "h": 240,
+      "why": "CPU: its graph and each CPU's use"
+    },
+    {
+      "x": 720,
+      "y": 616,
+      "w": 1500,
+      "h": 312,
+      "why": "Memory and Swap: its graph and what is used"
+    },
+    {
+      "x": 720,
+      "y": 974,
+      "w": 1500,
+      "h": 276,
+      "why": "Network: its graph, rates and totals"
+    },
+    {
+      "x": 720,
+      "y": 1296,
+      "w": 1500,
+      "h": 294,
+      "why": "Disk: its graph, rates and totals"
+    }
+  ],
   "actors": [
     {
       "x": 1812,
