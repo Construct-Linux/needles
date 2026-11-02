@@ -16,18 +16,18 @@
   "ignore": [],
   "actors": [],
   "approved": {
-    "build": "20261004.230225",
-    "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
-    "share": null,
-    "new": true
+    "build": "20261102.100434",
+    "os": "15a5e8ee69b383d2531b45e9f677f20cdea5519f",
+    "share": 0.029277006172839508,
+    "new": false
   },
   "lf": {
-    "pass": 2,
+    "pass": 4,
     "fail": 0,
     "checks": []
   },
   "noise": {
-    "edges": 0.003322723765432099,
-    "palette_colors": 3
+    "edges": 0.003254050925925926,
+    "palette_colors": 2
   }
 }
