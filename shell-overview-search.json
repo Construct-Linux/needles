@@ -13,7 +13,15 @@
     "stage_w": 1440,
     "stage_h": 900
   },
-  "ignore": [],
+  "ignore": [
+    {
+      "x": 780,
+      "y": 1350,
+      "w": 1680,
+      "h": 190,
+      "why": "Clocks' results: each city's time is the VM's clock, which moves with how long the run took"
+    }
+  ],
   "actors": [
     {
       "x": 1898,
