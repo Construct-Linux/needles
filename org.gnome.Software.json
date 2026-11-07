@@ -14,7 +14,64 @@
     "stage_w": 1440,
     "stage_h": 900
   },
-  "ignore": [],
+  "ignore": [
+    {
+      "x": 890,
+      "y": 873,
+      "w": 136,
+      "h": 130,
+      "why": "Flathub's catalogue: the runtime's own icon once Software has loaded it within the shot's seconds, the generic add-on icon until then"
+    },
+    {
+      "x": 890,
+      "y": 1059,
+      "w": 136,
+      "h": 130,
+      "why": "Flathub's catalogue: the runtime's own icon once Software has loaded it within the shot's seconds, the generic add-on icon until then"
+    },
+    {
+      "x": 890,
+      "y": 1245,
+      "w": 136,
+      "h": 130,
+      "why": "Flathub's catalogue: the runtime's own icon once Software has loaded it within the shot's seconds, the generic add-on icon until then"
+    },
+    {
+      "x": 1040,
+      "y": 428,
+      "w": 180,
+      "h": 30,
+      "why": "the size of what Flathub ships today"
+    },
+    {
+      "x": 1040,
+      "y": 760,
+      "w": 180,
+      "h": 30,
+      "why": "the size of what Flathub ships today"
+    },
+    {
+      "x": 1040,
+      "y": 946,
+      "w": 180,
+      "h": 30,
+      "why": "the size of what Flathub ships today"
+    },
+    {
+      "x": 1040,
+      "y": 1132,
+      "w": 180,
+      "h": 30,
+      "why": "the size of what Flathub ships today"
+    },
+    {
+      "x": 1040,
+      "y": 1318,
+      "w": 180,
+      "h": 30,
+      "why": "the size of what Flathub ships today"
+    }
+  ],
   "actors": [
     {
       "x": 1878,
