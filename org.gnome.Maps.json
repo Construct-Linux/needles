@@ -17,9 +17,9 @@
   "ignore": [
     {
       "x": 0,
-      "y": 192,
+      "y": 184,
       "w": 2880,
-      "h": 1496,
+      "h": 1504,
       "why": "the map: OpenStreetMap's tiles of the day, and which labels each draws by the order the tiles arrived in"
     }
   ],
