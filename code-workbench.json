@@ -13,7 +13,22 @@
     "stage_w": 1440,
     "stage_h": 900
   },
-  "ignore": [],
+  "ignore": [
+    {
+      "x": 2298,
+      "y": 640,
+      "w": 560,
+      "h": 940,
+      "why": "the Chat panel's welcome copy and its input's caret: VS Code's text, which it changes between launches"
+    },
+    {
+      "x": 940,
+      "y": 1440,
+      "w": 540,
+      "h": 70,
+      "why": "the welcome page's banner over the start checkbox: VS Code's promotion, which it changes between launches"
+    }
+  ],
   "actors": [
     {
       "x": 1878,
