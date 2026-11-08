@@ -1,6 +1,6 @@
 {
   "group": "shell",
-  "about": "Quick toggles on at rest, under the pointer and pressed: each the accent's tint at its own step, the label accent_text on all three",
+  "about": "Quick toggles on at rest, under the pointer and pressed: the on tint at rest, its hover step under the pointer and pressed, the label text on all three",
   "rules": [
     "S2",
     "C3"
@@ -16,25 +16,25 @@
   "ignore": [],
   "actors": [
     {
-      "x": 1828,
+      "x": 1878,
       "y": 16,
       "w": 260,
       "h": 64,
       "why": "the clock"
     },
     {
-      "x": 2080,
+      "x": 2130,
       "y": 16,
-      "w": 384,
+      "w": 334,
       "h": 64,
       "why": "the readings of Vitals"
     }
   ],
   "approved": {
-    "build": "20261004.230225",
-    "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
-    "share": null,
-    "new": true
+    "build": "20261108.192740",
+    "os": "4e7c82414ecc9c8c986f872cf19312fa3faf66c0",
+    "share": 0.020974293526952365,
+    "new": false
   },
   "lf": {
     "pass": 3,
@@ -42,7 +42,7 @@
     "checks": []
   },
   "noise": {
-    "edges": 0.012435185185185185,
+    "edges": 0.012507137345679013,
     "palette_colors": 6
   }
 }

@@ -1,0 +1,48 @@
+{
+  "group": "settings",
+  "about": "Settings' Wi-Fi panel with a dozen networks in range: the list's rows, their signal and lock",
+  "rules": [
+    "S3",
+    "TY4"
+  ],
+  "scheme": "dark",
+  "screen": {
+    "w": 2880,
+    "h": 1800,
+    "scale": 2,
+    "stage_w": 1440,
+    "stage_h": 900
+  },
+  "ignore": [],
+  "actors": [
+    {
+      "x": 1808,
+      "y": 16,
+      "w": 260,
+      "h": 64,
+      "why": "the clock"
+    },
+    {
+      "x": 2060,
+      "y": 16,
+      "w": 404,
+      "h": 64,
+      "why": "the readings of Vitals"
+    }
+  ],
+  "approved": {
+    "build": "20261108.192740",
+    "os": "4e7c82414ecc9c8c986f872cf19312fa3faf66c0",
+    "share": null,
+    "new": true
+  },
+  "lf": {
+    "pass": 2,
+    "fail": 0,
+    "checks": []
+  },
+  "noise": {
+    "edges": 0.021770640432098764,
+    "palette_colors": 6
+  }
+}

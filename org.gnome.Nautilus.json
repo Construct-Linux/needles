@@ -17,24 +17,24 @@
   "ignore": [],
   "actors": [
     {
-      "x": 1792,
+      "x": 1878,
       "y": 16,
-      "w": 258,
+      "w": 260,
       "h": 64,
       "why": "the clock"
     },
     {
-      "x": 2042,
+      "x": 2130,
       "y": 16,
-      "w": 422,
+      "w": 334,
       "h": 64,
       "why": "the readings of Vitals"
     }
   ],
   "approved": {
-    "build": "20261004.230225",
-    "os": "99c418bea16c53618a7dd9807d4984b2e1edabda",
-    "share": 1,
+    "build": "20261108.192740",
+    "os": "4e7c82414ecc9c8c986f872cf19312fa3faf66c0",
+    "share": 0.0025452286251369384,
     "new": false
   },
   "lf": {
@@ -43,7 +43,7 @@
     "checks": []
   },
   "noise": {
-    "edges": 0.012751929012345679,
+    "edges": 0.012634837962962962,
     "palette_colors": 7
   }
 }

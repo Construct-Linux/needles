@@ -1,6 +1,6 @@
 {
   "group": "shell",
-  "about": "The date menu: the calendar on h at the quick settings' height, today accent_text at 700 with no ring, the month's days in text, the other months' muted",
+  "about": "The date menu: the calendar on h at the quick settings' height, today on (the on tint, text at 700) with no ring, the month's days in text, the other months' muted",
   "rules": [
     "S2",
     "F1",
@@ -33,9 +33,9 @@
     }
   ],
   "approved": {
-    "build": "20261107.204923",
-    "os": "a11117bec48faef7077985537159e3816d0e479e",
-    "share": 0.034623575126309765,
+    "build": "20261108.192740",
+    "os": "4e7c82414ecc9c8c986f872cf19312fa3faf66c0",
+    "share": 0.003967748153306638,
     "new": false
   },
   "lf": {
@@ -44,7 +44,7 @@
     "checks": []
   },
   "noise": {
-    "edges": 0.01210570987654321,
-    "palette_colors": 5
+    "edges": 0.011952353395061729,
+    "palette_colors": 6
   }
 }
